@@ -1,7 +1,7 @@
 {
-  "name": "backend-typescript-pern-stack",
+  "name": "backend-typescript",
   "version": "1.0.0",
-  "description": "Backend TypeScript PERN Stack",
+  "description": "Backend TypeScript",
   "scripts": {
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
@@ -31,7 +31,7 @@
     "passport-jwt": "4.0.1",
     "pg": "8.11.3",
     "reflect-metadata": "0.1.13",
-    "typeorm": "0.2.25",
+    "typeorm": "0.3.17",
     "winston": "3.10.0"
   },
   "devDependencies": {

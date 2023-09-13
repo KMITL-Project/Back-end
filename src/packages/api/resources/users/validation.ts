@@ -1,4 +1,4 @@
-import * as joi from '@hapi/joi'
+import * as joi from "@hapi/joi";
 
 export default {
   hello: {
@@ -6,4 +6,4 @@ export default {
     params: {},
     query: {},
   },
-}
+};
