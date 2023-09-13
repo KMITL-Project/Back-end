@@ -1,21 +1,15 @@
-import { ConnectionOptions } from "typeorm";
+import { DataSource } from "typeorm";
 import config from "./src/config";
 
-const connectionOptions: ConnectionOptions = {
-  // cli: {
-  //   entitiesDir: 'src/packages/database/models',
-  //   migrationsDir: 'src/packages/database/migrations',
-  // },
-  database: config.DB.NAME,
-  entities: ["src/packages/database/models/*.ts"],
-  host: config.DB.HOST,
-  logging: false,
-  migrations: ["src/packages/database/migrations/*.ts"],
-  password: config.DB.PASSWORD,
-  port: config.DB.PORT,
-  synchronize: false,
+export const datasource = new DataSource({
+  uuidExtension: "uuid-ossp",
   type: "postgres",
+  host: config.DB.HOST,
+  port: config.DB.PORT,
+  database: config.DB.NAME,
   username: config.DB.USER,
-};
-
-module.exports = connectionOptions;
+  password: config.DB.PASSWORD,
+  entities: ["src/packages/database/models/*.ts"],
+  migrations: ["src/packages/database/migrations/*.ts"],
+  subscribers: [],
+});

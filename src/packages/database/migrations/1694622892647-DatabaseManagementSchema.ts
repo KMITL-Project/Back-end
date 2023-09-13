@@ -399,6 +399,51 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       }),
     );
 
+    await queryRunner.dropForeignKey(
+      config.DB.MAIN_SCHEMA + "." + "lot_mapping",
+      new TableForeignKey({
+        columnNames: ["material_id"],
+        referencedColumnNames: ["id"],
+        referencedTableName: config.DB.MAIN_SCHEMA + "." + "materials",
+      }),
+    );
+
+    await queryRunner.dropForeignKey(
+      config.DB.MAIN_SCHEMA + "." + "lot_mapping",
+      new TableForeignKey({
+        columnNames: ["lot_id"],
+        referencedColumnNames: ["id"],
+        referencedTableName: config.DB.MAIN_SCHEMA + "." + "lots",
+      }),
+    );
+
+    await queryRunner.dropForeignKey(
+      config.DB.MAIN_SCHEMA + "." + "floors",
+      new TableForeignKey({
+        columnNames: ["shelf_id"],
+        referencedColumnNames: ["id"],
+        referencedTableName: config.DB.MAIN_SCHEMA + "." + "shelves",
+      }),
+    );
+
+    await queryRunner.dropForeignKey(
+      config.DB.MAIN_SCHEMA + "." + "stores",
+      new TableForeignKey({
+        columnNames: ["floor_id"],
+        referencedColumnNames: ["id"],
+        referencedTableName: config.DB.MAIN_SCHEMA + "." + "floors",
+      }),
+    );
+
+    await queryRunner.dropForeignKey(
+      config.DB.MAIN_SCHEMA + "." + "materials",
+      new TableForeignKey({
+        columnNames: ["unit_id"],
+        referencedColumnNames: ["id"],
+        referencedTableName: config.DB.MAIN_SCHEMA + "." + "units",
+      }),
+    );
+
     // Drop the tables
     await queryRunner.dropTable(config.DB.MAIN_SCHEMA + "." + "permission_mapping");
     await queryRunner.dropTable(config.DB.MAIN_SCHEMA + "." + "role_mapping");
@@ -418,8 +463,5 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
 
     // Drop the custom ENUM type
     await queryRunner.query(`DROP TYPE "${config.DB.MAIN_SCHEMA}"."type"`);
-
-    // Drop the custom schema
-    await queryRunner.query(`DROP SCHEMA "${config.DB.MAIN_SCHEMA}"`);
   }
 }

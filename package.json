@@ -5,14 +5,14 @@
   "scripts": {
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
+    "typeorm": "ts-node -r tsconfig-paths/register -O '{\"module\": \"commonjs\"}' ./node_modules/typeorm/cli.js -d ormconfig.ts",
     "migration:create": "NODE_ENV=local npm run typeorm -- migration:create -n",
     "setup:local": "NODE_ENV=local npm run typeorm -- migration:run",
     "setup:local_revert": "NODE_ENV=local npm run typeorm -- migration:revert",
     "setup:test": "NODE_ENV=test npm run typeorm -- migration:run",
     "setup:test_revert": "NODE_ENV=test npm run typeorm -- migration:revert",
     "test": "NODE_ENV=test jest -i",
-    "test:coverage": "NODE_ENV=test jest --coverage",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
+    "test:coverage": "NODE_ENV=test jest --coverage"
   },
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
@@ -64,7 +64,7 @@
     "supertest": "6.3.3",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.1",
-    "tsconfig-paths": "4.2.0",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "5.2.2"
   }
 }
