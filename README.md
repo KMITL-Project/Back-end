@@ -33,6 +33,7 @@ LOGGING_TYPE=""
 # SERVER
 SERVER_PORT=""
 ```
+
 ## Setup
 
 1. Create a `.env.local` file on the root of the project based on `.env.example`
@@ -46,4 +47,6 @@ SERVER_PORT=""
 2. Create a `test` app database. `$ createdb <DB_NAME>;`
 3. Execute `$ npm run setup:test`
 4. Run `$ npm test`
-.
+   .
+
+## Started

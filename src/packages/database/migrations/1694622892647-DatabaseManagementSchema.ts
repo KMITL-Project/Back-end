@@ -11,7 +11,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "users",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "image_url", type: "varchar", isNullable: true },
           { name: "full_name", type: "varchar" },
           { name: "username", type: "varchar" },
@@ -28,7 +28,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "roles",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "name", type: "varchar" },
           { name: "update_at", type: "timestamp", isNullable: true },
           { name: "created_at", type: "timestamp", isNullable: true },
@@ -42,7 +42,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "permissions",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "name", type: "varchar" },
           { name: "action", type: "varchar" },
           { name: "update_at", type: "timestamp", isNullable: true },
@@ -57,7 +57,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "materials",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "name", type: "varchar" },
           { name: "image_url", type: "varchar", isNullable: true },
           { name: "detail", type: "varchar" },
@@ -76,7 +76,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "units",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "name", type: "varchar" },
           { name: "update_at", type: "timestamp", isNullable: true },
           { name: "created_at", type: "timestamp", isNullable: true },
@@ -90,7 +90,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "stores",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "image_url", type: "varchar", isNullable: true },
           { name: "floor_id", type: "integer", isPrimary: true },
           { name: "update_at", type: "timestamp", isNullable: true },
@@ -105,7 +105,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "shelves",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "image_url", type: "varchar", isNullable: true },
           { name: "name", type: "varchar" },
           { name: "detail", type: "varchar", isNullable: true },
@@ -121,7 +121,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "floors",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "shelf_id", type: "integer" },
           { name: "image_url", type: "varchar", isNullable: true },
           { name: "name", type: "varchar" },
@@ -138,7 +138,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "customers",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "full_name", type: "varchar" },
           { name: "address", type: "varchar", isNullable: true },
           { name: "update_at", type: "timestamp", isNullable: true },
@@ -153,7 +153,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "orders",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "customer_id", type: "integer" },
           { name: "name", type: "varchar" },
           { name: "detail", type: "varchar", isNullable: true },
@@ -173,7 +173,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "material_history",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "material_id", type: "integer" },
           { name: "name", type: "varchar" },
           { name: "type", type: "enum", enum: ["withdraw", "add", "remove", "use"] },
@@ -203,7 +203,7 @@ export class DatabaseManagementSchema1694622892647 implements MigrationInterface
       new Table({
         name: config.DB.MAIN_SCHEMA + "." + "lots",
         columns: [
-          { name: "id", type: "integer", isPrimary: true },
+          { name: "id", type: "integer", isPrimary: true, isGenerated: true, generationStrategy: "increment" },
           { name: "name", type: "varchar" },
           { name: "buy_date", type: "timestamp", isNullable: true },
           { name: "price", type: "varchar", isNullable: true },
