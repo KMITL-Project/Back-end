@@ -10,7 +10,3 @@ export const list = async (req: Request, res: Response, next: NextFunction): Pro
     return res.status(500).send(error);
   }
 };
-
-export const login = async (req: Request, res: Response, next: NextFunction) => {
-  res.status(httpStatus.OK).json({ hello: "world" });
-};
