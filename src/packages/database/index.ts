@@ -1,20 +1,11 @@
-import 'reflect-metadata'
-import { Connection, createConnection } from 'typeorm'
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { datasource } from "~/ormconfig";
 
-let connection: Connection
-
-export async function getConnection(): Promise<Connection> {
-  if (connection) {
-    return connection
-  }
-
-  connection = await createConnection()
-
-  return connection
+export async function getConnection(): Promise<DataSource> {
+  return datasource.initialize();
 }
 
 export async function closeConnection(): Promise<void> {
-  if (connection) {
-    return connection.close()
-  }
+  return datasource.destroy();
 }
