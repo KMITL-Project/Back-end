@@ -1,9 +1,10 @@
 import { UploadedFile } from "express-fileupload";
-import { ExpressValidator } from "express-validator";
+import { ExpressValidator, validationResult } from "express-validator";
+import httpStatus from "http-status";
 
 export const validationCustom = new ExpressValidator({
-  notFileEmpty: (_, { req }) => (!req.files || Object.keys(req.files).length === 0 || !req.files.sampleFile ? false : true),
-  isNotImage: (_, { req }) => {
+  notFileEmpty: (_: any, { req }) => (!req.files || Object.keys(req.files).length === 0 || !req.files.sampleFile ? false : true),
+  isNotImage: (_: any, { req }) => {
     if (!req.files) {
       return false;
     }
@@ -17,3 +18,16 @@ export const validationCustom = new ExpressValidator({
     return isImage;
   },
 });
+
+import { Request, Response, NextFunction } from "express";
+
+export const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      code: httpStatus.BAD_REQUEST,
+      message: "Validation failed",
+      errors: errors.array(),
+    });
+  }
+};

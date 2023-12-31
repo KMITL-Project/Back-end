@@ -5,7 +5,7 @@ import { datasource } from "~/ormconfig";
 export const list = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     // const users = await getConnection().getRepository(User).createQueryBuilder("user").getMany();
-    return res.status(200).send();
+    return res.status(httpStatus.OK).send();
   } catch (error) {
     return res.status(500).send(error);
   }

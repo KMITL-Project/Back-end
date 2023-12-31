@@ -4,10 +4,10 @@ export const loginValidation = validationCustom.checkSchema({
   username: {
     errorMessage: "Username not empty",
     notEmpty: true,
-    isEmail: {
-      options: {},
-      errorMessage: "Username is not email",
-    },
+    // isEmail: {
+    //   options: {},
+    //   errorMessage: "Username is not email",
+    // },
   },
   password: {
     isLength: {

@@ -1,6 +1,7 @@
 import Router from "express-promise-router";
 import { login, register } from "./auth";
 import { loginValidation, registerValidation } from "../../validation/authValidation";
+import { verifyToken } from "../../middlewares/common";
 
 const authRouter = Router();
 
