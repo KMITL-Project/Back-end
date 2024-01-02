@@ -14,6 +14,14 @@ import router from "~/packages/api/router";
 
 const app = express();
 
+declare global {
+  namespace Express {
+    interface Request {
+      user?: any;
+    }
+  }
+}
+
 app.use(
   morgan(config.LOGGING.TYPE, {
     skip: (req: Request, res: Response) => res.statusCode < httpStatus.BAD_REQUEST,

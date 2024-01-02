@@ -2,10 +2,7 @@ import { randomUUID } from "crypto";
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
 import * as httpStatus from "http-status";
-import { datasource } from "~/ormconfig";
-import { User } from "~/packages/database/models/models";
 import { userService } from "../../services/userService";
-import { number } from "@hapi/joi";
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   const validation = validationResult(req);
@@ -14,13 +11,16 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 
   try {
-    const rsp = userService.login(req.body.username, req.body.password);
-    console.log(rsp);
+    const token = await userService.login(req.body.username, req.body.password);
+    return res.status(httpStatus.OK).json({
+      code: httpStatus.OK,
+      message: "Login success",
+      data: { token: token },
+    });
   } catch (error) {
     console.error(error);
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ code: Number(error.code), message: error.message });
   }
-
-  return res.status(httpStatus.OK).json({ ok: "ok" });
 };
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
