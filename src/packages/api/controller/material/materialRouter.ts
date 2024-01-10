@@ -1,8 +1,12 @@
 import Router from "express-promise-router";
 import { validateToken } from "../../util/jwt";
-import { createMaterial } from "./material";
+import { createMaterial, deleteMaterial, getAllMaterial, getMaterial, updateMaterial } from "./material";
 
-const userRouter = Router();
-userRouter.post("/create", validateToken, createMaterial);
+const materialRouter = Router();
+materialRouter.get("/", validateToken, getAllMaterial);
+materialRouter.get("/:id", validateToken, getMaterial);
+materialRouter.post("/", validateToken, createMaterial);
+materialRouter.put("/:id", validateToken, updateMaterial);
+materialRouter.delete("/:id", validateToken, deleteMaterial);
 
-export default userRouter;
+export default materialRouter;

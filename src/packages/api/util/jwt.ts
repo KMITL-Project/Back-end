@@ -10,7 +10,7 @@ export const generateToken = (user: User): string => {
     id: user.id,
     username: user.username,
   };
-  return jwt.sign(payload, config.AUTH.TOKEN_SECRET, { expiresIn: "1h" }); // Expires in 1 hour
+  return jwt.sign(payload, config.AUTH.TOKEN_SECRET, { expiresIn: "10h" }); // Expires in 1 hour
 };
 
 export const validateToken = (req: Request, res: Response, next: NextFunction) => {

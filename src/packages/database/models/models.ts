@@ -247,7 +247,7 @@ export class Floor extends BaseEntity {
   created_at: Date;
 
   @ManyToOne(() => Shelf, (shelf) => shelf.floors)
-  @JoinColumn({ name: "shelv_id" })
+  @JoinColumn({ name: "shelve_id" })
   shelf: Shelf;
 
   @OneToMany(() => Material, (material) => material.floor)

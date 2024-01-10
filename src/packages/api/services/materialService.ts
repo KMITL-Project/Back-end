@@ -1,3 +1,4 @@
+import { resourceUsage } from "process";
 import { datasource } from "~/ormconfig";
 import { Material } from "~/packages/database/models/models";
 
@@ -23,13 +24,19 @@ class MaterialService {
   }
 
   async updateMaterial(id: number, materialData: Partial<Material>): Promise<Material | null> {
-    let user = await this.materialRepository.findOneBy({ id });
-    if (!user) {
-      return null;
+    try {
+      let material = await this.materialRepository.findOneBy({ id });
+      if (!material) {
+        return null;
+      }
+
+      this.materialRepository.merge(material, materialData);
+      await this.materialRepository.save(material);
+      return material;
+    } catch (error) {
+      console.error("Error updating material:", error);
+      throw error;
     }
-    this.materialRepository.merge(user, materialData);
-    await this.materialRepository.save(user);
-    return user;
   }
 
   async deleteMaterial(id: number): Promise<void> {
@@ -37,4 +44,4 @@ class MaterialService {
   }
 }
 
-export const materialsService = new MaterialService();
+export const materialService = new MaterialService();

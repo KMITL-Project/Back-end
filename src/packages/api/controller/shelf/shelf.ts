@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import * as httpStatus from "http-status";
 import { shelfService } from "../../services/shelfService";
+import { randomUUID } from "crypto";
 
 export const getAllShelf = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
@@ -29,6 +30,15 @@ export const getShelf = async (req: Request, res: Response, next: NextFunction):
 };
 
 export const createShelf = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  var fileName = "";
+  if (!Array.isArray(req.files.image_url)) {
+    fileName = "src/upload/" + randomUUID() + "." + req.files.image_url.name.split(".").pop();
+    req.files.image_url.mv(fileName, (err) => {
+      if (err) console.log("error:", err);
+    });
+    req.body.image_url = fileName;
+  }
+
   try {
     const rsp = await shelfService.createShelf({ ...req.body });
     return res.status(httpStatus.OK).json({
