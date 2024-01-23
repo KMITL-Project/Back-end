@@ -6,6 +6,7 @@ import shelfRouter from "./controller/shelf/shelfRouter";
 import floorRouter from "./controller/floor/floorRouter";
 import unitRouter from "./controller/unit/unitRouter";
 import materialRouter from "./controller/material/materialRouter";
+import materialHistoryRouter from "./controller/materialHistory/materialHistoryRouter";
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use("/shelf", shelfRouter);
 router.use("/floor", floorRouter);
 router.use("/unit", unitRouter);
 router.use("/material", materialRouter);
+router.use("/material-history", materialHistoryRouter);
 
 export default router;
