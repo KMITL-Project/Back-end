@@ -31,8 +31,8 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
   var fileName = "";
   if (!Array.isArray(req.files.upload_image)) {
-    fileName = "src/upload/" + randomUUID() + "." + req.files.upload_image.name.split(".").pop();
-    req.files.upload_image.mv(fileName, (err) => {
+    fileName = randomUUID() + "." + req.files.upload_image.name.split(".").pop();
+    req.files.upload_image.mv("src/upload/" + fileName, (err) => {
       if (err) console.log("error:", err);
     });
     req.body.image_url = fileName;

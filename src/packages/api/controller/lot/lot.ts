@@ -15,6 +15,19 @@ export const getLotAll = async (req: Request, res: Response, next: NextFunction)
   }
 };
 
+export const getLotByMaterialId = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+  try {
+    const rsp = await lotService.getLotByMaterialId(Number(req.params.material_id));
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: "get lot by material id success",
+      data: rsp,
+    });
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
 export const depositLot = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   try {
     const rsp = await lotService.depositLot(

@@ -32,6 +32,16 @@ class LotService {
     return await this.lotRepository.find();
   }
 
+  async getLotByMaterialId(materialId: number): Promise<Lot[]> {
+    const material = await datasource.getRepository(Material).createQueryBuilder("material").leftJoinAndSelect("material.lotMappings", "lotMapping").leftJoinAndSelect("lotMapping.lot", "lot").where("material.id = :id", { id: materialId }).orderBy("lot.created_at", "ASC").getOne();
+    var lots: Lot[] = [];
+    for (const value of material.lotMappings) {
+      const lot = await value.lot;
+      lots.push(lot);
+    }
+    return lots;
+  }
+
   async updateLot(id: number, lotData: Partial<Lot>): Promise<Lot | null> {
     let lot = await this.lotRepository.findOneBy({ id });
     if (!lot) {

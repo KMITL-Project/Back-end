@@ -7,9 +7,13 @@ import floorRouter from "./controller/floor/floorRouter";
 import unitRouter from "./controller/unit/unitRouter";
 import materialRouter from "./controller/material/materialRouter";
 import materialHistoryRouter from "./controller/materialHistory/materialHistoryRouter";
+const path = require("path");
 
 const router = express.Router();
 
+const uploadDirectory = path.join(__dirname, "../../upload");
+
+router.use("/upload", express.static(uploadDirectory));
 router.use("/users", userRouter);
 router.use("/auth", authRouter);
 router.use("/lot", lotRouter);

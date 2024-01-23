@@ -32,8 +32,8 @@ export const getMaterialHistory = async (req: Request, res: Response, next: Next
 export const createMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   var fileName = "";
   if (!Array.isArray(req.files.image_url)) {
-    fileName = "src/upload/" + randomUUID() + "." + req.files.image_url.name.split(".").pop();
-    req.files.image_url.mv(fileName, (err) => {
+    fileName = randomUUID() + "." + req.files.image_url.name.split(".").pop();
+    req.files.image_url.mv("src/upload/" + fileName, (err) => {
       if (err) console.log("error:", err);
     });
     req.body.image_url = fileName;
@@ -54,8 +54,8 @@ export const createMaterialHistory = async (req: Request, res: Response, next: N
 export const updateMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   var fileName = "";
   if (!Array.isArray(req.files.image_url)) {
-    fileName = "src/upload/" + randomUUID() + "." + req.files.image_url.name.split(".").pop();
-    req.files.image_url.mv(fileName, (err) => {
+    fileName = randomUUID() + "." + req.files.image_url.name.split(".").pop();
+    req.files.image_url.mv("src/upload/" + fileName, (err) => {
       if (err) console.log("error:", err);
     });
     req.body.image_url = fileName;

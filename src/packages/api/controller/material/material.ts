@@ -32,8 +32,8 @@ export const getMaterial = async (req: Request, res: Response, next: NextFunctio
 export const createMaterial = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   var fileName = "";
   if (!Array.isArray(req.files.image_url)) {
-    fileName = "src/upload/" + randomUUID() + "." + req.files.image_url.name.split(".").pop();
-    req.files.image_url.mv(fileName, (err) => {
+    fileName = randomUUID() + "." + req.files.image_url.name.split(".").pop();
+    req.files.image_url.mv("src/upload/" + fileName, (err) => {
       if (err) console.log("error:", err);
     });
     req.body.image_url = fileName;
@@ -54,8 +54,8 @@ export const createMaterial = async (req: Request, res: Response, next: NextFunc
 export const updateMaterial = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
   var fileName = "";
   if (!Array.isArray(req.files.image_url)) {
-    fileName = "src/upload/" + randomUUID() + "." + req.files.image_url.name.split(".").pop();
-    req.files.image_url.mv(fileName, (err) => {
+    fileName = randomUUID() + "." + req.files.image_url.name.split(".").pop();
+    req.files.image_url.mv("src/upload/" + fileName, (err) => {
       if (err) console.log("error:", err);
     });
     req.body.image_url = fileName;
