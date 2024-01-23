@@ -1,6 +1,5 @@
-import { resourceUsage } from "process";
-import { datasource } from "~/ormconfig";
-import { Floor } from "~/packages/database/models/models";
+import { datasource } from '~/ormconfig';
+import { Floor } from '~/packages/database/models/models';
 
 class FloorService {
   private floorRepository = datasource.getRepository(Floor);
@@ -11,6 +10,7 @@ class FloorService {
       await this.floorRepository.save(floor);
       return floor;
     } catch (error) {
+      console.error('An error occurred: ', error);
       throw error;
     }
   }
@@ -25,7 +25,7 @@ class FloorService {
 
   async updateFloor(id: number, floorData: Partial<Floor>): Promise<Floor | null> {
     try {
-      let floor = await this.floorRepository.findOneBy({ id });
+      const floor = await this.floorRepository.findOneBy({ id });
       if (!floor) {
         return null;
       }
@@ -34,7 +34,7 @@ class FloorService {
       await this.floorRepository.save(floor);
       return floor;
     } catch (error) {
-      console.error("Error updating floor:", error);
+      console.error('Error updating floor:', error);
       throw error;
     }
   }

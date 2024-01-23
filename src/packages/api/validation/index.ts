@@ -8,7 +8,7 @@ export const validationCustom = new ExpressValidator({
     if (!req.files) {
       return false;
     }
-    var isImage = true;
+    let isImage = true;
     Object.keys(req.files).forEach((key) => {
       const file = req.files[key] as UploadedFile;
       if (!file.mimetype.startsWith("image/")) {
@@ -21,7 +21,7 @@ export const validationCustom = new ExpressValidator({
 
 import { Request, Response, NextFunction } from "express";
 
-export const handleValidationErrors = (req: Request, res: Response, next: NextFunction) => {
+export const handleValidationErrors = (req: Request, res: Response, _: NextFunction) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     res.status(httpStatus.BAD_REQUEST).json({

@@ -1,8 +1,8 @@
-import { datasource } from "~/ormconfig";
-import { User } from "~/packages/database/models/models";
-import { CustomError } from "../util/error";
-import { generate, verify } from "password-hash";
-import { generateToken } from "../util/jwt";
+import { datasource } from '~/ormconfig';
+import { User } from '~/packages/database/models/models';
+import { CustomError } from '../util/error';
+import { generate, verify } from 'password-hash';
+import { generateToken } from '../util/jwt';
 
 class UserService {
   private userRepository = datasource.getRepository(User);
@@ -15,8 +15,9 @@ class UserService {
       return user;
     } catch (error) {
       if (this.isDuplicateKeyError(error)) {
-        throw new CustomError("A user with the provided details already exists.", "400");
+        throw new CustomError('A user with the provided details already exists.', '400');
       }
+      console.error('An error occurred: ', error);
       throw error;
     }
   }
@@ -26,7 +27,7 @@ class UserService {
   }
 
   async updateUser(id: number, userData: Partial<User>): Promise<User | null> {
-    let user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOneBy({ id });
     if (!user) {
       return null;
     }
@@ -49,7 +50,7 @@ class UserService {
   }
 
   async hashPassword(password: string): Promise<string> {
-    return generate(password, { algorithm: "sha512", saltLength: 9, iterations: 11 });
+    return generate(password, { algorithm: 'sha512', saltLength: 9, iterations: 11 });
   }
 
   async verifyPassword(password: string, hashPassword: string): Promise<boolean> {
@@ -62,7 +63,7 @@ class UserService {
 
   private isDuplicateKeyError(error: any): boolean {
     // duplicate error postgresql code 23505
-    return error.code === "23505";
+    return error.code === '23505';
   }
 }
 

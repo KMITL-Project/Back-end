@@ -1,14 +1,14 @@
-import { NextFunction, Request, Response } from "express";
-import * as httpStatus from "http-status";
-import { materialHistoryService } from "../../services/materialHistoryService";
-import { randomUUID } from "crypto";
+import { NextFunction, Request, Response } from 'express';
+import * as httpStatus from 'http-status';
+import { materialHistoryService } from '../../services/materialHistoryService';
+import { randomUUID } from 'crypto';
 
-export const getAllMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const getAllMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const rsp = await materialHistoryService.getMaterialHistoryAll();
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "get all materialHistory success",
+      message: 'get all materialHistory success',
       data: rsp,
     });
   } catch (error) {
@@ -16,12 +16,12 @@ export const getAllMaterialHistory = async (req: Request, res: Response, next: N
   }
 };
 
-export const getMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const getMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const rsp = await materialHistoryService.getMaterialHistoryById(Number(req.params.id));
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "get materialHistory success",
+      message: 'get materialHistory success',
       data: rsp,
     });
   } catch (error) {
@@ -29,12 +29,12 @@ export const getMaterialHistory = async (req: Request, res: Response, next: Next
   }
 };
 
-export const createMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  var fileName = "";
+export const createMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  let fileName = '';
   if (!Array.isArray(req.files.image_url)) {
-    fileName = randomUUID() + "." + req.files.image_url.name.split(".").pop();
-    req.files.image_url.mv("src/upload/" + fileName, (err) => {
-      if (err) console.log("error:", err);
+    fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
+    req.files.image_url.mv('src/upload/' + fileName, (err) => {
+      if (err) console.log('error:', err);
     });
     req.body.image_url = fileName;
   }
@@ -43,7 +43,7 @@ export const createMaterialHistory = async (req: Request, res: Response, next: N
     const rsp = await materialHistoryService.createMaterialHistory({ ...req.body });
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "create materialHistory success",
+      message: 'create materialHistory success',
       data: rsp,
     });
   } catch (error) {
@@ -51,12 +51,12 @@ export const createMaterialHistory = async (req: Request, res: Response, next: N
   }
 };
 
-export const updateMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
-  var fileName = "";
+export const updateMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  let fileName = '';
   if (!Array.isArray(req.files.image_url)) {
-    fileName = randomUUID() + "." + req.files.image_url.name.split(".").pop();
-    req.files.image_url.mv("src/upload/" + fileName, (err) => {
-      if (err) console.log("error:", err);
+    fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
+    req.files.image_url.mv('src/upload/' + fileName, (err) => {
+      if (err) console.log('error:', err);
     });
     req.body.image_url = fileName;
   }
@@ -65,7 +65,7 @@ export const updateMaterialHistory = async (req: Request, res: Response, next: N
     const rsp = await materialHistoryService.updateMaterialHistory(Number(req.params.id), { ...req.body });
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "update materialHistory success",
+      message: 'update materialHistory success',
       data: rsp,
     });
   } catch (error) {
@@ -73,12 +73,12 @@ export const updateMaterialHistory = async (req: Request, res: Response, next: N
   }
 };
 
-export const deleteMaterialHistory = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const deleteMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const rsp = await materialHistoryService.deleteMaterialHistory(Number(req.params.id));
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "delete materialHistory success",
+      message: 'delete materialHistory success',
       data: rsp,
     });
   } catch (error) {

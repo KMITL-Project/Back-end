@@ -1,6 +1,5 @@
-import { resourceUsage } from "process";
-import { datasource } from "~/ormconfig";
-import { Unit } from "~/packages/database/models/models";
+import { datasource } from '~/ormconfig';
+import { Unit } from '~/packages/database/models/models';
 
 class UnitService {
   private unitRepository = datasource.getRepository(Unit);
@@ -11,6 +10,7 @@ class UnitService {
       await this.unitRepository.save(unit);
       return unit;
     } catch (error) {
+      console.error('An error occurred: ', error);
       throw error;
     }
   }
@@ -25,7 +25,7 @@ class UnitService {
 
   async updateUnit(id: number, unitData: Partial<Unit>): Promise<Unit | null> {
     try {
-      let unit = await this.unitRepository.findOneBy({ id });
+      const unit = await this.unitRepository.findOneBy({ id });
       if (!unit) {
         return null;
       }
@@ -34,7 +34,7 @@ class UnitService {
       await this.unitRepository.save(unit);
       return unit;
     } catch (error) {
-      console.error("Error updating unit:", error);
+      console.error('Error updating unit:', error);
       throw error;
     }
   }

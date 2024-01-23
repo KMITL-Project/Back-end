@@ -1,6 +1,5 @@
-import { resourceUsage } from "process";
-import { datasource } from "~/ormconfig";
-import { Shelf } from "~/packages/database/models/models";
+import { datasource } from '~/ormconfig';
+import { Shelf } from '~/packages/database/models/models';
 
 class ShelfService {
   private shelfRepository = datasource.getRepository(Shelf);
@@ -11,6 +10,7 @@ class ShelfService {
       await this.shelfRepository.save(shelf);
       return shelf;
     } catch (error) {
+      console.error('An error occurred: ', error);
       throw error;
     }
   }
@@ -25,7 +25,7 @@ class ShelfService {
 
   async updateShelf(id: number, shelfData: Partial<Shelf>): Promise<Shelf | null> {
     try {
-      let shelf = await this.shelfRepository.findOneBy({ id });
+      const shelf = await this.shelfRepository.findOneBy({ id });
       if (!shelf) {
         return null;
       }
@@ -34,7 +34,7 @@ class ShelfService {
       await this.shelfRepository.save(shelf);
       return shelf;
     } catch (error) {
-      console.error("Error updating shelf:", error);
+      console.error('Error updating shelf:', error);
       throw error;
     }
   }

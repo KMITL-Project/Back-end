@@ -132,3 +132,5 @@ pg_data
 .DS_Store
 
 src/upload/*
+
+build

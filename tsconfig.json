@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
+    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
@@ -9,9 +10,7 @@
     "target": "es2019",
     "outDir": "./build",
     "paths": {
-      "~/*": [
-        "src/*"
-      ]
+      "~/*": ["src/*"]
     },
     "sourceMap": true
   }

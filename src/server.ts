@@ -1,23 +1,26 @@
-import * as compression from "compression";
-import * as cors from "cors";
-import * as express from "express";
-import { Request, Response } from "express";
-import * as fileUpload from "express-fileupload";
-import helmet from "helmet";
-import * as httpStatus from "http-status";
-import * as morgan from "morgan";
+import * as compression from 'compression';
+import * as cors from 'cors';
+import * as express from 'express';
+import { Request, Response } from 'express';
+import * as fileUpload from 'express-fileupload';
+import helmet from 'helmet';
+import * as httpStatus from 'http-status';
+import * as morgan from 'morgan';
 
-import config from "~/config";
+import config from '~/config';
 
-import { handleErrors } from "~/packages/api/middlewares/error";
-import router from "~/packages/api/router";
+import { handleErrors } from '~/packages/api/middlewares/error';
+import router from '~/packages/api/router';
 
 const app = express();
 
 declare global {
   namespace Express {
+    interface User {
+      id?: number;
+    }
     interface Request {
-      user?: any;
+      user?: User;
     }
   }
 }

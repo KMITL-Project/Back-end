@@ -1,8 +1,8 @@
-import * as dotEnvSafe from "dotenv-safe";
-import * as path from "path";
+import * as dotEnvSafe from 'dotenv-safe';
+import * as path from 'path';
 
-if (process.env.NODE_ENV !== "production") {
-  let envPath = ".env";
+if (process.env.NODE_ENV !== 'production') {
+  let envPath = '.env';
 
   if (process.env.NODE_ENV) {
     envPath = `${envPath}.${process.env.NODE_ENV}`;
@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== "production") {
 
   dotEnvSafe.config({
     allowEmptyValues: true,
-    example: path.resolve(__dirname, "../../.env.example"),
+    example: path.resolve(__dirname, '../../.env.example'),
     path: path.resolve(process.cwd(), envPath),
   });
 }
@@ -39,7 +39,23 @@ interface Config {
   readonly SERVER_PORT: number;
 }
 
-const { AUTH_TOKEN_EXPIRATION_TIME, AUTH_TOKEN_SECRET, DB_HOST, DB_AUDIT_SCHEMA, DB_MAIN_SCHEMA, DB_PASSWORD, DB_PORT, DB_NAME, DB_USERNAME, LOGGING_COMBINED_FILE, LOGGING_ERROR_FILE, LOGGING_LEVEL, LOGGING_TYPE, NODE_ENV, SERVER_PORT } = process.env;
+const {
+  AUTH_TOKEN_EXPIRATION_TIME,
+  AUTH_TOKEN_SECRET,
+  DB_HOST,
+  DB_AUDIT_SCHEMA,
+  DB_MAIN_SCHEMA,
+  DB_PASSWORD,
+  DB_PORT,
+  DB_NAME,
+  DB_USERNAME,
+  LOGGING_COMBINED_FILE,
+  LOGGING_ERROR_FILE,
+  LOGGING_LEVEL,
+  LOGGING_TYPE,
+  NODE_ENV,
+  SERVER_PORT,
+} = process.env;
 
 const config: Config = {
   AUTH: {

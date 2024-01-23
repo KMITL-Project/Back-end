@@ -1,6 +1,5 @@
-import { resourceUsage } from "process";
-import { datasource } from "~/ormconfig";
-import { Material } from "~/packages/database/models/models";
+import { datasource } from '~/ormconfig';
+import { Material } from '~/packages/database/models/models';
 
 class MaterialService {
   private materialRepository = datasource.getRepository(Material);
@@ -11,6 +10,7 @@ class MaterialService {
       await this.materialRepository.save(material);
       return material;
     } catch (error) {
+      console.error('An error occurred: ', error);
       throw error;
     }
   }
@@ -25,7 +25,7 @@ class MaterialService {
 
   async updateMaterial(id: number, materialData: Partial<Material>): Promise<Material | null> {
     try {
-      let material = await this.materialRepository.findOneBy({ id });
+      const material = await this.materialRepository.findOneBy({ id });
       if (!material) {
         return null;
       }
@@ -34,7 +34,7 @@ class MaterialService {
       await this.materialRepository.save(material);
       return material;
     } catch (error) {
-      console.error("Error updating material:", error);
+      console.error('Error updating material:', error);
       throw error;
     }
   }

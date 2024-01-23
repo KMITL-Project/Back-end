@@ -1,7 +1,5 @@
-import { resourceUsage } from "process";
-import { DeepPartial } from "typeorm";
-import { datasource } from "~/ormconfig";
-import { Lot, LotMapping, Material, MaterialHistory, MaterialHistoryType } from "~/packages/database/models/models";
+import { datasource } from '~/ormconfig';
+import { MaterialHistory } from '~/packages/database/models/models';
 
 class MaterialHistoryService {
   private materialHistoryRepository = datasource.getRepository(MaterialHistory);
@@ -12,6 +10,7 @@ class MaterialHistoryService {
       await this.materialHistoryRepository.save(materialHistory);
       return materialHistory;
     } catch (error) {
+      console.error('An error occurred: ', error);
       throw error;
     }
   }
@@ -26,7 +25,7 @@ class MaterialHistoryService {
 
   async updateMaterialHistory(id: number, materialHistoryData: Partial<MaterialHistory>): Promise<MaterialHistory | null> {
     try {
-      let materialHistory = await this.materialHistoryRepository.findOneBy({ id });
+      const materialHistory = await this.materialHistoryRepository.findOneBy({ id });
       if (!materialHistory) {
         return null;
       }
@@ -35,7 +34,7 @@ class MaterialHistoryService {
       await this.materialHistoryRepository.save(materialHistory);
       return materialHistory;
     } catch (error) {
-      console.error("Error updating materialHistory:", error);
+      console.error('Error updating materialHistory:', error);
       throw error;
     }
   }

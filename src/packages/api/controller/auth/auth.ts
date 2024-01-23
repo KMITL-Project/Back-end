@@ -4,7 +4,7 @@ import { validationResult } from "express-validator";
 import * as httpStatus from "http-status";
 import { userService } from "../../services/userService";
 
-export const login = async (req: Request, res: Response, next: NextFunction) => {
+export const login = async (req: Request, res: Response, _: NextFunction) => {
   const validation = validationResult(req);
   if (!validation.isEmpty()) {
     return res.status(httpStatus.OK).json(validation);
@@ -23,13 +23,13 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
-export const register = async (req: Request, res: Response, next: NextFunction) => {
+export const register = async (req: Request, res: Response, _: NextFunction) => {
   const validation = validationResult(req);
   if (!validation.isEmpty()) {
     return res.status(httpStatus.OK).json(validation);
   }
 
-  var fileName = "";
+  let fileName = "";
   if (!Array.isArray(req.files.upload_image)) {
     fileName = randomUUID() + "." + req.files.upload_image.name.split(".").pop();
     req.files.upload_image.mv("src/upload/" + fileName, (err) => {

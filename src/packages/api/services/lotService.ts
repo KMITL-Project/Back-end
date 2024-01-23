@@ -1,5 +1,5 @@
-import { datasource } from "~/ormconfig";
-import { Lot, LotMapping, Material, MaterialHistory, MaterialHistoryType } from "~/packages/database/models/models";
+import { datasource } from '~/ormconfig';
+import { Lot, LotMapping, Material, MaterialHistory, MaterialHistoryType } from '~/packages/database/models/models';
 
 class LotService {
   private lotRepository = datasource.getRepository(Lot);
@@ -19,6 +19,7 @@ class LotService {
 
         return lot;
       } catch (error) {
+        console.error('An error occurred: ', error);
         throw error;
       }
     });
@@ -33,8 +34,15 @@ class LotService {
   }
 
   async getLotByMaterialId(materialId: number): Promise<Lot[]> {
-    const material = await datasource.getRepository(Material).createQueryBuilder("material").leftJoinAndSelect("material.lotMappings", "lotMapping").leftJoinAndSelect("lotMapping.lot", "lot").where("material.id = :id", { id: materialId }).orderBy("lot.created_at", "ASC").getOne();
-    var lots: Lot[] = [];
+    const material = await datasource
+      .getRepository(Material)
+      .createQueryBuilder('material')
+      .leftJoinAndSelect('material.lotMappings', 'lotMapping')
+      .leftJoinAndSelect('lotMapping.lot', 'lot')
+      .where('material.id = :id', { id: materialId })
+      .orderBy('lot.created_at', 'ASC')
+      .getOne();
+    const lots: Lot[] = [];
     for (const value of material.lotMappings) {
       const lot = await value.lot;
       lots.push(lot);
@@ -43,7 +51,7 @@ class LotService {
   }
 
   async updateLot(id: number, lotData: Partial<Lot>): Promise<Lot | null> {
-    let lot = await this.lotRepository.findOneBy({ id });
+    const lot = await this.lotRepository.findOneBy({ id });
     if (!lot) {
       return null;
     }
@@ -72,7 +80,7 @@ class LotService {
         const materialHistory = await transactionalEntityManager.create(MaterialHistory, {
           material_id: materialId,
           amount: Number(lotData.amount),
-          remark: "",
+          remark: '',
           update_by: userId,
           type: MaterialHistoryType.AddMaterial,
         });
@@ -80,7 +88,7 @@ class LotService {
 
         return material;
       } catch (error) {
-        console.log(error);
+        console.error('An error occurred: ', error);
         throw error;
       }
     });
@@ -89,11 +97,18 @@ class LotService {
   async withdrawLot(materialId: number, amount: number, userId: number): Promise<Partial<Material>> {
     return await datasource.transaction(async (transactionalEntityManager) => {
       try {
-        const material = await transactionalEntityManager.getRepository(Material).createQueryBuilder("material").leftJoinAndSelect("material.lotMappings", "lotMapping").leftJoinAndSelect("lotMapping.lot", "lot").where("material.id = :id", { id: materialId }).orderBy("lot.created_at", "ASC").getOne();
+        const material = await transactionalEntityManager
+          .getRepository(Material)
+          .createQueryBuilder('material')
+          .leftJoinAndSelect('material.lotMappings', 'lotMapping')
+          .leftJoinAndSelect('lotMapping.lot', 'lot')
+          .where('material.id = :id', { id: materialId })
+          .orderBy('lot.created_at', 'ASC')
+          .getOne();
         const total = material.total - amount;
 
         if (total < 0) {
-          throw Error("not enough material");
+          throw Error('not enough material');
         }
 
         material.total = total;
@@ -101,7 +116,7 @@ class LotService {
 
         if (material) {
           for (const value of material.lotMappings) {
-            var lot = await value.lot;
+            const lot = await value.lot;
             amount = Number(lot.amount) - amount;
             if (amount < 0) {
               lot.amount = String(0);
@@ -118,7 +133,7 @@ class LotService {
         const materialHistory = await transactionalEntityManager.create(MaterialHistory, {
           material_id: materialId,
           amount: amount,
-          remark: "",
+          remark: '',
           update_by: userId,
           type: MaterialHistoryType.WithdrawMaterial,
         });
@@ -126,7 +141,7 @@ class LotService {
 
         return material;
       } catch (error) {
-        console.log(error);
+        console.error('An error occurred: ', error);
         throw error;
       }
     });

@@ -1,17 +1,17 @@
-import express from "express";
+import express from 'express';
 
 enum Role {
-  Admin = "admin",
-  Editor = "editor",
-  User = "user",
+  Admin = 'admin',
+  Editor = 'editor',
+  User = 'user',
 }
 
-const checkRole = (roles: Role[]) => {
+export const checkRole = (roles: Role[]) => {
   return (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if (req.user && roles.includes("admin" as Role)) {
+    if (req.user && roles.includes('admin' as Role)) {
       next();
     } else {
-      res.status(403).json({ message: "Access Denied" });
+      res.status(403).json({ message: 'Access Denied' });
     }
   };
 };

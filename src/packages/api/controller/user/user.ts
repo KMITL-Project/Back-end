@@ -1,13 +1,13 @@
-import { NextFunction, Request, Response } from "express";
-import * as httpStatus from "http-status";
-import { userService } from "../../services/userService";
+import { NextFunction, Request, Response } from 'express';
+import * as httpStatus from 'http-status';
+import { userService } from '../../services/userService';
 
-export const userList = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const userList = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     // const users = await getConnection().getRepository(User).createQueryBuilder("user").getMany();
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "",
+      message: '',
       data: {},
     });
   } catch (error) {
@@ -15,18 +15,18 @@ export const userList = async (req: Request, res: Response, next: NextFunction):
   }
 };
 
-export const userInfo = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const userInfo = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     if (!req.user)
       return res.status(httpStatus.OK).json({
         code: 400,
-        message: "something wrong",
+        message: 'something wrong',
         data: {},
       });
     const rsp = await userService.getUserById(req.user.id);
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: "",
+      message: '',
       data: rsp,
     });
   } catch (error) {

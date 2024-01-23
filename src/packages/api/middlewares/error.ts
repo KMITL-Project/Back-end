@@ -1,13 +1,13 @@
-import { NextFunction, Request, Response } from "express";
-import * as httpStatus from "http-status";
-import config from "~/config";
-import { APIException } from "../helpers/exceptions/APIException";
-import { Forbidden } from "../helpers/exceptions/forbidden";
-import { InvalidParameter } from "../helpers/exceptions/invalidParameter";
-import { NotFound } from "../helpers/exceptions/notFound";
-import { Unauthorized } from "../helpers/exceptions/unauthorized";
+import { NextFunction, Request, Response } from 'express';
+import * as httpStatus from 'http-status';
+import config from '~/config';
+import { APIException } from '../helpers/exceptions/APIException';
+import { Forbidden } from '../helpers/exceptions/forbidden';
+import { InvalidParameter } from '../helpers/exceptions/invalidParameter';
+import { NotFound } from '../helpers/exceptions/notFound';
+import { Unauthorized } from '../helpers/exceptions/unauthorized';
 
-import logger from "~/packages/api/helpers/logging";
+import logger from '~/packages/api/helpers/logging';
 
 interface ErrorResponse {
   code: number;
@@ -28,12 +28,12 @@ const convertToException = (err: any): APIException | Forbidden | InvalidParamet
   return err;
 };
 
-export const handleErrors = (err: any, req: Request, res: Response, next: NextFunction) => {
+export const handleErrors = (err: any, req: Request, res: Response, _: NextFunction) => {
   console.log(err);
 
   let response: ErrorResponse = {
     code: httpStatus.INTERNAL_SERVER_ERROR,
-    message: "Something bad happened.",
+    message: 'Something bad happened.',
   };
 
   const { status, errors, stack, message } = convertToException(err);
@@ -48,7 +48,7 @@ export const handleErrors = (err: any, req: Request, res: Response, next: NextFu
     stack,
   };
 
-  if (config.NODE_ENV === "local") {
+  if (config.NODE_ENV === 'local') {
     delete response.stack;
   }
 
