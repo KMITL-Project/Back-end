@@ -1,5 +1,5 @@
 import { datasource } from "~/ormconfig";
-import { Lot, LotMapping, Material } from "~/packages/database/models/models";
+import { Lot, LotMapping, Material, MaterialHistory, MaterialHistoryType } from "~/packages/database/models/models";
 
 class LotService {
   private lotRepository = datasource.getRepository(Lot);
@@ -40,6 +40,82 @@ class LotService {
 
   async deleteLot(id: number): Promise<void> {
     await this.lotRepository.delete(id);
+  }
+
+  async addLot(materialId: number, lotData: Partial<Lot>, userId: number): Promise<Partial<MaterialHistory>> {
+    return await datasource.transaction(async (transactionalEntityManager) => {
+      try {
+        const lot = transactionalEntityManager.create(Lot, lotData);
+        await transactionalEntityManager.save(Lot, lot);
+
+        const lotMapping = transactionalEntityManager.create(LotMapping, { material_id: materialId, lot_id: lot.id });
+        await transactionalEntityManager.save(LotMapping, lotMapping);
+
+        const material = await transactionalEntityManager.findOneBy(Material, { id: materialId });
+        material.total += Number(lot.amount);
+        await transactionalEntityManager.save(Material, material);
+
+        const materialHistory = await transactionalEntityManager.create(MaterialHistory, {
+          material_id: materialId,
+          amount: Number(lotData.amount),
+          remark: "",
+          update_by: userId,
+          type: MaterialHistoryType.AddMaterial,
+        });
+        await transactionalEntityManager.save(MaterialHistory, materialHistory);
+
+        return materialHistory;
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    });
+  }
+
+  async withdrawLot(materialId: number, amount: number, userId: number): Promise<Partial<Material>> {
+    return await datasource.transaction(async (transactionalEntityManager) => {
+      try {
+        const material = await transactionalEntityManager.getRepository(Material).createQueryBuilder("material").leftJoinAndSelect("material.lotMappings", "lotMapping").leftJoinAndSelect("lotMapping.lot", "lot").where("material.id = :id", { id: materialId }).orderBy("lot.created_at", "ASC").getOne();
+        const total = material.total - amount;
+
+        if (total < 0) {
+          throw Error("not enough material");
+        }
+
+        material.total = total;
+        transactionalEntityManager.save(Material, material);
+
+        if (material) {
+          for (const value of material.lotMappings) {
+            var lot = await value.lot;
+            amount = Number(lot.amount) - amount;
+            if (amount < 0) {
+              lot.amount = String(0);
+              await transactionalEntityManager.save(Lot, lot);
+              amount = amount ** 2;
+            } else {
+              lot.amount = String(amount);
+              await transactionalEntityManager.save(Lot, lot);
+              break;
+            }
+          }
+        }
+
+        const materialHistory = await transactionalEntityManager.create(MaterialHistory, {
+          material_id: materialId,
+          amount: amount,
+          remark: "",
+          update_by: userId,
+          type: MaterialHistoryType.WithdrawMaterial,
+        });
+        await transactionalEntityManager.save(MaterialHistory, materialHistory);
+
+        return material;
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    });
   }
 }
 

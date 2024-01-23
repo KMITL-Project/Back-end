@@ -1,6 +1,7 @@
 import { resourceUsage } from "process";
+import { DeepPartial } from "typeorm";
 import { datasource } from "~/ormconfig";
-import { MaterialHistory } from "~/packages/database/models/models";
+import { Lot, LotMapping, Material, MaterialHistory, MaterialHistoryType } from "~/packages/database/models/models";
 
 class MaterialHistoryService {
   private materialHistoryRepository = datasource.getRepository(MaterialHistory);
