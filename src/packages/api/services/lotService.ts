@@ -28,6 +28,10 @@ class LotService {
     return await this.lotRepository.findOneBy({ id });
   }
 
+  async getLotAll(): Promise<Lot[] | null> {
+    return await this.lotRepository.find();
+  }
+
   async updateLot(id: number, lotData: Partial<Lot>): Promise<Lot | null> {
     let lot = await this.lotRepository.findOneBy({ id });
     if (!lot) {
@@ -42,7 +46,7 @@ class LotService {
     await this.lotRepository.delete(id);
   }
 
-  async addLot(materialId: number, lotData: Partial<Lot>, userId: number): Promise<Partial<MaterialHistory>> {
+  async depositLot(materialId: number, lotData: Partial<Lot>, userId: number): Promise<Partial<Material>> {
     return await datasource.transaction(async (transactionalEntityManager) => {
       try {
         const lot = transactionalEntityManager.create(Lot, lotData);
@@ -64,7 +68,7 @@ class LotService {
         });
         await transactionalEntityManager.save(MaterialHistory, materialHistory);
 
-        return materialHistory;
+        return material;
       } catch (error) {
         console.log(error);
         throw error;

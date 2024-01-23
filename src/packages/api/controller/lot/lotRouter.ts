@@ -1,9 +1,10 @@
 import Router from "express-promise-router";
 import { validateToken } from "../../util/jwt";
-import { createLot, withdrawLot } from "./lot";
+import { depositLot, getLotAll, withdrawLot } from "./lot";
 
 const lotRouter = Router();
-lotRouter.post("/create", validateToken, createLot);
+lotRouter.get("/", validateToken, getLotAll);
+lotRouter.post("/deposit", validateToken, depositLot);
 lotRouter.post("/withdraw", validateToken, withdrawLot);
 
 export default lotRouter;
