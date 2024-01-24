@@ -43,7 +43,7 @@ export const depositLot = async (req: Request, res: Response, _: NextFunction): 
     );
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: 'create lot success',
+      message: 'deposit lot success',
       data: rsp,
     });
   } catch (error) {
@@ -56,7 +56,7 @@ export const withdrawLot = async (req: Request, res: Response, _: NextFunction):
     const rsp = await lotService.withdrawLot(Number(req.body.material_id), Number(req.body.amount), req.user.id);
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: 'create lot success',
+      message: 'withdraw lot success',
       data: rsp,
     });
   } catch (error) {
