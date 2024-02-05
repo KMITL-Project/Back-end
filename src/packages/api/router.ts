@@ -7,6 +7,8 @@ import floorRouter from './controller/floor/floorRouter';
 import unitRouter from './controller/unit/unitRouter';
 import materialRouter from './controller/material/materialRouter';
 import materialHistoryRouter from './controller/materialHistory/materialHistoryRouter';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
 const router = express.Router();

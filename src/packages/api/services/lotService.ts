@@ -67,7 +67,10 @@ class LotService {
   async depositLot(materialId: number, lotData: Partial<Lot>, userId: number): Promise<Partial<Material>> {
     return await datasource.transaction(async (transactionalEntityManager) => {
       try {
-        const lot = transactionalEntityManager.create(Lot, lotData);
+        const lot = transactionalEntityManager.create(Lot, {
+          ...lotData,
+          available_amount: lotData.amount,
+        });
         await transactionalEntityManager.save(Lot, lot);
 
         const lotMapping = transactionalEntityManager.create(LotMapping, { material_id: materialId, lot_id: lot.id });
@@ -106,6 +109,7 @@ class LotService {
           .orderBy('lot.created_at', 'ASC')
           .getOne();
         const total = material.total - amount;
+        const realAmount = amount;
 
         if (total < 0) {
           throw Error('not enough material');
@@ -117,13 +121,13 @@ class LotService {
         if (material) {
           for (const value of material.lotMappings) {
             const lot = await value.lot;
-            amount = Number(lot.amount) - amount;
+            amount = Number(lot.available_amount) - amount;
             if (amount < 0) {
-              lot.amount = String(0);
+              lot.available_amount = String(0);
               await transactionalEntityManager.save(Lot, lot);
               amount = amount * -1;
             } else {
-              lot.amount = String(amount);
+              lot.available_amount = String(amount);
               await transactionalEntityManager.save(Lot, lot);
               break;
             }
@@ -132,7 +136,7 @@ class LotService {
 
         const materialHistory = await transactionalEntityManager.create(MaterialHistory, {
           material_id: materialId,
-          amount: amount,
+          amount: realAmount,
           remark: '',
           update_by: userId,
           type: MaterialHistoryType.WithdrawMaterial,

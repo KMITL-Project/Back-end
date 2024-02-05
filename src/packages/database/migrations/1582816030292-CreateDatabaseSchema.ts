@@ -1,5 +1,5 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
-import config from "~/config";
+import { MigrationInterface, QueryRunner } from 'typeorm';
+import config from '~/config';
 
 const appSchema = config.DB.MAIN_SCHEMA;
 
@@ -16,6 +16,5 @@ export class CreateDatabaseSchema1582816030292 implements MigrationInterface {
     `);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   public async down(_: QueryRunner): Promise<any> {}
 }

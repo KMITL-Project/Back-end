@@ -3,6 +3,7 @@ import config from '~/config';
 import { User } from '~/packages/database/models/models';
 import * as httpStatus from 'http-status';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const jwt = require('jsonwebtoken');
 
 export const generateToken = (user: User): string => {
@@ -10,7 +11,7 @@ export const generateToken = (user: User): string => {
     id: user.id,
     username: user.username,
   };
-  return jwt.sign(payload, config.AUTH.TOKEN_SECRET, { expiresIn: '10h' }); // Expires in 1 hour
+  return jwt.sign(payload, config.AUTH.TOKEN_SECRET, { expiresIn: '10d' }); // Expires in 1 hour
 };
 
 export const validateToken = (req: Request, res: Response, next: NextFunction) => {

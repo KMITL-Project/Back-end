@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "nodemon",
     "lint": "eslint . --ext .ts",
+    "build": "tsc -p ./tsconfig.json",
+    "start": "NODE_ENV=local node build/server.js",
     "typeorm": "ts-node -r tsconfig-paths/register -O '{\"module\": \"commonjs\"}' ./node_modules/typeorm/cli.js -d src/ormconfig.ts",
     "migration:create": "NODE_ENV=local npm run typeorm -- migration:create -n",
     "setup:local": "NODE_ENV=local npm run typeorm -- migration:run",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import * as compression from 'compression';
 import * as cors from 'cors';
 import * as express from 'express';
