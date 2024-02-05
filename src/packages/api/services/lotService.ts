@@ -121,7 +121,7 @@ class LotService {
             if (amount < 0) {
               lot.amount = String(0);
               await transactionalEntityManager.save(Lot, lot);
-              amount = amount ** 2;
+              amount = amount * -1;
             } else {
               lot.amount = String(amount);
               await transactionalEntityManager.save(Lot, lot);
