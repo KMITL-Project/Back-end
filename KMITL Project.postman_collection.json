@@ -1,0 +1,1894 @@
+{
+	"info": {
+		"_postman_id": "f01c92e1-9e8d-4bb3-8d34-d0d715ad7ad5",
+		"name": "KMITL Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21886587"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "full_name",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "kongkung",
+									"type": "text"
+								},
+								{
+									"key": "upload_image",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/360_F_509597532_RKUuYsERhODmkxkZd82pSHnFtDAtgbzJ.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "test1",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "kongkung",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/users/user-info",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								"user-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Material",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/material",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/material/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tungsten ",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/360_F_509597532_RKUuYsERhODmkxkZd82pSHnFtDAtgbzJ.jpg"
+								},
+								{
+									"key": "detail",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "floor_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "unit_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/material",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/FL10001.pdf"
+								},
+								{
+									"key": "detail",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "floor_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "unit_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/material/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/material/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Material History",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/material-history",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material-history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/material-history/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material-history",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/FL10001.pdf"
+								},
+								{
+									"key": "detail",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "floor_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "unit_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/material-history",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material-history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/FL10001.pdf"
+								},
+								{
+									"key": "detail",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "floor_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "unit_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/material-history/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material-history",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/material-history/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"material-history",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lot",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/lot",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lot"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get lot by material",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/lot/:material_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lot",
+								":material_id"
+							],
+							"variable": [
+								{
+									"key": "material_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deposit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "material_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "tungsten 2",
+									"type": "text"
+								},
+								{
+									"key": "buy_date",
+									"value": "2024-01-23 19:15:03.890831",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "tungsten by home pro",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/lot/deposit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lot",
+								"deposit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "withdraw",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "lot_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "amount",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "material_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/lot/withdraw",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"lot",
+								"withdraw"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shelf",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/shelf",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shelf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/shelf/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shelf",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "28"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/360_F_509597532_RKUuYsERhODmkxkZd82pSHnFtDAtgbzJ.jpg"
+								},
+								{
+									"key": "name",
+									"value": "shelf no.2",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "store hard wood",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/shelf",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shelf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "test update",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"value": "123123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/shelf/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shelf",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "28"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/shelf/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"shelf",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "28"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/permission",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/permission/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"permission",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "order",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "order_permit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/permission",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"permission"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/permission/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"permission",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/permission/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"permission",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "getAll",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{host}}/role",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/role/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get role user by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/role/role-user/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role",
+								"role-user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "stock",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/role",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add role user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/role/add-role-user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role",
+								"add-role-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "action",
+									"value": "update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/role/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/role/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"role",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Floor",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/floor",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"floor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/floor/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"floor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "shelve_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "floor 1-1",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/360_F_509597532_RKUuYsERhODmkxkZd82pSHnFtDAtgbzJ.jpg"
+								},
+								{
+									"key": "detail",
+									"value": "store wire",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/floor",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"floor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "shelve_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "test update",
+									"type": "text"
+								},
+								{
+									"key": "image_url",
+									"type": "file",
+									"src": "/Users/kajonsakchopkha/Downloads/FL10001.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/floor/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"floor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/floor/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"floor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Unit",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/unit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"unit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/unit/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"unit",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "kg",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/unit",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"unit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "update",
+									"type": "text"
+								},
+								{
+									"key": "detail",
+									"value": "test update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/unit/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"unit",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/floor/:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"floor",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "get image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/upload/:image_name",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"upload",
+								":image_name"
+							],
+							"variable": [
+								{
+									"key": "image_name",
+									"value": "1330a453-99be-43b8-b85b-590a34580226.jpg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logistic",
+			"item": [
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/order",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/order/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "customer_name",
+											"value": "สมใช ใจดี",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "เหล็กดัดประตูวงกบ",
+											"type": "text"
+										},
+										{
+											"key": "detail",
+											"value": "ขนาด 28*28 วัสดุลูกค้า",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "ลำปาทิว 13000",
+											"type": "text"
+										},
+										{
+											"key": "latitude",
+											"value": "100.023412",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "13.12341113",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "customer_name",
+											"value": "update",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "update",
+											"type": "text"
+										},
+										{
+											"key": "detail",
+											"value": "update",
+											"type": "text"
+										},
+										{
+											"key": "address",
+											"value": "update",
+											"type": "text"
+										},
+										{
+											"key": "latitude",
+											"value": "update",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "update",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/floor/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"floor",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Order Group",
+					"item": [
+						{
+							"name": "create order group",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "orders_ids",
+											"value": "2,3,4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order-group",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change status Success",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "orders_ids",
+											"value": "2,3,4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order-group/success/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group",
+										"success",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "22"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change status InProgress",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "orders_ids",
+											"value": "2,3,4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order-group/in-progress/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group",
+										"in-progress",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "23"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/order-group",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/order-group/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "221"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update Copy",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "orders_ids",
+											"value": "2,3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order-group/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "18"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/order-group/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order-group",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "19"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0MSIsImlhdCI6MTcwNzE0NzcxNiwiZXhwIjoxNzA4MDExNzE2fQ.i4_waHM6gsLp_JTl4urnhdkO6UYU3tjP8SRytUvUqFE",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
