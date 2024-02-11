@@ -87,3 +87,37 @@ export const deleteRole = async (req: Request, res: Response, _: NextFunction): 
     });
   }
 };
+
+export const addRoleToUser = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const rsp = await roleService.addRoleToUser(Number(req.body.user_id), Number(req.body.role_id));
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: `add role to user ID:${req.body.user_id} success`,
+      data: rsp,
+    });
+  } catch (error) {
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
+  }
+};
+
+export const getRolesByUserId = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const rsp = await roleService.getRolesByUserId(Number(req.params.id));
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: `Get role to user ID:${req.params.id} success`,
+      data: rsp,
+    });
+  } catch (error) {
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
+  }
+};

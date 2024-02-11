@@ -1,14 +1,14 @@
-import config from "~/config";
-import { getConnection } from "./packages/database";
-import server from "./server";
+import config from '~/config';
+import { getConnection } from './packages/database';
+import server from './server';
 
-const PORT = config.SERVER_PORT || "3000";
+const PORT = config.SERVER_PORT || '3000';
 
 async function onStart(): Promise<any> {
   try {
     await getConnection();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw err;
   }
 }

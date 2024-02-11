@@ -29,7 +29,7 @@ const convertToException = (err: any): APIException | Forbidden | InvalidParamet
 };
 
 export const handleErrors = (err: any, req: Request, res: Response, _: NextFunction) => {
-  console.log(err);
+  console.error(err);
 
   let response: ErrorResponse = {
     code: httpStatus.INTERNAL_SERVER_ERROR,

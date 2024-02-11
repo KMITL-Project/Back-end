@@ -43,7 +43,7 @@ export const createMaterial = async (req: Request, res: Response, _: NextFunctio
   if (!Array.isArray(req.files.image_url)) {
     fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
     req.files.image_url.mv('src/upload/' + fileName, (err) => {
-      if (err) console.log('error:', err);
+      if (err) console.error('error:', err);
     });
     req.body.image_url = fileName;
   }
@@ -69,7 +69,7 @@ export const updateMaterial = async (req: Request, res: Response, _: NextFunctio
   if (!Array.isArray(req.files.image_url)) {
     fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
     req.files.image_url.mv('src/upload/' + fileName, (err) => {
-      if (err) console.log('error:', err);
+      if (err) console.error('error:', err);
     });
     req.body.image_url = fileName;
   }
