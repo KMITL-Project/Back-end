@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import * as httpStatus from 'http-status';
 import { materialHistoryService } from '../../services/materialHistoryService';
 import { randomUUID } from 'crypto';
+import validateError from '../../errors/validateError';
 
 export const getAllMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
@@ -12,7 +13,11 @@ export const getAllMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -25,7 +30,11 @@ export const getMaterialHistory = async (req: Request, res: Response, _: NextFun
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -47,7 +56,11 @@ export const createMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -69,7 +82,11 @@ export const updateMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -82,6 +99,10 @@ export const deleteMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };

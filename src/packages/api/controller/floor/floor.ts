@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import * as httpStatus from 'http-status';
 import { floorService } from '../../services/floorService';
 import { randomUUID } from 'crypto';
+import validateError from '../../errors/validateError';
 
 export const getAllFloor = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
@@ -12,7 +13,11 @@ export const getAllFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -25,7 +30,11 @@ export const getFloor = async (req: Request, res: Response, _: NextFunction): Pr
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -47,7 +56,11 @@ export const createFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -60,7 +73,11 @@ export const updateFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -73,6 +90,10 @@ export const deleteFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };

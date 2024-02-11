@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import * as httpStatus from 'http-status';
 import { lotService } from '../../services/lotService';
+import validateError from '../../errors/validateError';
 
 export const getLotAll = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
@@ -11,7 +12,11 @@ export const getLotAll = async (req: Request, res: Response, _: NextFunction): P
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -24,7 +29,11 @@ export const getLotByMaterialId = async (req: Request, res: Response, _: NextFun
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -47,7 +56,11 @@ export const depositLot = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -60,6 +73,10 @@ export const withdrawLot = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
-    return res.status(500).send(error);
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };

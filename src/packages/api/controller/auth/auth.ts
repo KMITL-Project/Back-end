@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import * as httpStatus from 'http-status';
 import { userService } from '../../services/userService';
+import validateError from '../../errors/validateError';
 
 export const login = async (req: Request, res: Response, _: NextFunction) => {
   const validation = validationResult(req);
@@ -25,8 +26,11 @@ export const login = async (req: Request, res: Response, _: NextFunction) => {
       data: {},
     });
   } catch (error) {
-    console.error(error);
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ code: Number(error.code), message: error.message });
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
 
@@ -55,6 +59,10 @@ export const register = async (req: Request, res: Response, _: NextFunction) => 
       },
     });
   } catch (error) {
-    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ code: Number(error.code), message: error.message });
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
   }
 };
