@@ -362,9 +362,6 @@ export class OrdersGroup extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  orders_group_id: number;
-
   @Column('json')
   node: any;
 
@@ -390,7 +387,7 @@ export class Order extends BaseEntity {
   id: number;
 
   @Column()
-  orders_group_id: number;
+  orders_group_id?: number;
 
   @Column()
   customer_name: string;
@@ -405,7 +402,7 @@ export class Order extends BaseEntity {
   address: string;
 
   @Column()
-  send_date: Date;
+  send_date?: Date;
 
   @Column()
   latitude: string;
