@@ -49,4 +49,16 @@ SERVER_PORT=""
 4. Run `$ npm test`
    .
 
-## Started
+## Build
+
+#### build image
+
+```bash
+docker build -t kmitl-back-end .
+```
+
+#### run image
+
+```bash
+docker run -p 3000:3000 kmitl-back-end
+```

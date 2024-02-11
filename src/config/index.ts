@@ -1,19 +1,17 @@
 import * as dotEnvSafe from 'dotenv-safe';
 import * as path from 'path';
 
-if (process.env.NODE_ENV !== 'production') {
-  let envPath = '.env';
+let envPath = '.env';
 
-  if (process.env.NODE_ENV) {
-    envPath = `${envPath}.${process.env.NODE_ENV}`;
-  }
-
-  dotEnvSafe.config({
-    allowEmptyValues: true,
-    example: path.resolve(__dirname, '../../.env.example'),
-    path: path.resolve(process.cwd(), envPath),
-  });
+if (process.env.NODE_ENV) {
+  envPath = `${envPath}.${process.env.NODE_ENV}`;
 }
+
+dotEnvSafe.config({
+  allowEmptyValues: true,
+  example: path.resolve(__dirname, '../../.env.example'),
+  path: path.resolve(process.cwd(), envPath),
+});
 
 interface Config {
   readonly AUTH: {
@@ -80,5 +78,7 @@ const config: Config = {
   NODE_ENV,
   SERVER_PORT: parseInt(SERVER_PORT, 10),
 };
+
+console.debug(config);
 
 export default config;
