@@ -26,6 +26,11 @@ class UserService {
     return await this.userRepository.findOneBy({ id });
   }
 
+  async getUserAll(): Promise<User[]> {
+    const users = await this.userRepository.find();
+    return users;
+  }
+
   async updateUser(id: number, userData: Partial<User>): Promise<User | null> {
     const user = await this.userRepository.findOneBy({ id });
     if (!user) {

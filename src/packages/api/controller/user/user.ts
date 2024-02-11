@@ -5,11 +5,11 @@ import validateError from '../../errors/validateError';
 
 export const userList = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
-    // const users = await getConnection().getRepository(User).createQueryBuilder("user").getMany();
+    const rsp = await userService.getUserAll();
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: '',
-      data: {},
+      message: 'Get all user success',
+      data: rsp,
     });
   } catch (error) {
     const { code, message } = validateError(error);
@@ -25,7 +25,7 @@ export const userInfo = async (req: Request, res: Response, _: NextFunction): Pr
     const rsp = await userService.getUserById(req.user.id);
     return res.status(httpStatus.OK).json({
       code: 200,
-      message: '',
+      message: 'Get all user info success',
       data: rsp,
     });
   } catch (error) {

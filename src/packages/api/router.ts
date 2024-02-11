@@ -1,14 +1,18 @@
 import * as express from 'express';
-import authRouter from './controller/auth/authRouter';
-import userRouter from './controller/user/userRouter';
-import lotRouter from './controller/lot/lotRouter';
-import shelfRouter from './controller/shelf/shelfRouter';
-import floorRouter from './controller/floor/floorRouter';
-import unitRouter from './controller/unit/unitRouter';
-import materialRouter from './controller/material/materialRouter';
-import materialHistoryRouter from './controller/materialHistory/materialHistoryRouter';
-import orderRouter from './controller/order/orderRouter';
-import orderGroupRouter from './controller/orderGroup/orderGroupRouter';
+import {
+  authRouter,
+  userRouter,
+  lotRouter,
+  shelfRouter,
+  floorRouter,
+  unitRouter,
+  materialRouter,
+  materialHistoryRouter,
+  orderGroupRouter,
+  orderRouter,
+  permissionRouter,
+  roleRouter,
+} from './controller/index';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
@@ -28,5 +32,7 @@ router.use('/material', materialRouter);
 router.use('/material-history', materialHistoryRouter);
 router.use('/order', orderRouter);
 router.use('/order-group', orderGroupRouter);
+router.use('/permission', permissionRouter);
+router.use('/role', roleRouter);
 
 export default router;
