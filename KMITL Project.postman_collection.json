@@ -62,7 +62,7 @@
 							"formdata": [
 								{
 									"key": "username",
-									"value": "test1",
+									"value": "test2",
 									"type": "text"
 								},
 								{
@@ -978,7 +978,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "3"
 								}
 							]
 						}
@@ -1020,7 +1020,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "stock",
+									"value": "super admin",
 									"type": "text"
 								}
 							]
@@ -1047,12 +1047,12 @@
 							"formdata": [
 								{
 									"key": "user_id",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								},
 								{
 									"key": "role_id",
-									"value": "1",
+									"value": "3",
 									"type": "text"
 								}
 							]
@@ -1080,12 +1080,7 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "update",
-									"type": "text"
-								},
-								{
-									"key": "action",
-									"value": "update",
+									"value": "admin update",
 									"type": "text"
 								}
 							]
@@ -1506,7 +1501,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "2"
+											"value": "6"
 										}
 									]
 								}
@@ -1642,6 +1637,76 @@
 										{
 											"key": "id",
 											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change status Success",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "orders_ids",
+											"value": "2,3,4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order/success/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order",
+										"success",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change status InProgress",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "orders_ids",
+											"value": "2,3,4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/order/in-progress/:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"order",
+										"in-progress",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "6"
 										}
 									]
 								}

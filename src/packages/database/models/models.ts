@@ -41,8 +41,8 @@ export class User extends BaseEntity {
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @OneToMany(() => RoleMapping, (roleMapping) => roleMapping.user)
-  roleMappings: RoleMapping[];
+  @OneToMany(() => RoleMapping, (role_mapping) => role_mapping.user)
+  role_mappings: RoleMapping[];
 
   @OneToMany(() => MaterialHistory, (materialHistory) => materialHistory.updatedBy)
   materialHistories: MaterialHistory[];
@@ -64,8 +64,11 @@ export class Role extends BaseEntity {
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @OneToMany(() => RoleMapping, (roleMapping) => roleMapping.role)
-  roleMappings: RoleMapping[];
+  @OneToMany(() => RoleMapping, (role_mapping) => role_mapping.role)
+  role_mappings: RoleMapping[];
+
+  @OneToMany(() => PermissionMapping, (permission_mapping) => permission_mapping.role)
+  permission_mapping: PermissionMapping[];
 }
 
 @Entity(config.DB.MAIN_SCHEMA + '.' + 'role_mapping')
@@ -87,11 +90,11 @@ export class RoleMapping extends BaseEntity {
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
-  @ManyToOne(() => Role, (role) => role.roleMappings)
+  @ManyToOne(() => Role, (role) => role.role_mappings)
   @JoinColumn({ name: 'role_id' })
   role: Role;
 
-  @ManyToOne(() => User, (user) => user.roleMappings)
+  @ManyToOne(() => User, (user) => user.role_mappings)
   @JoinColumn({ name: 'user_id' })
   user: User;
 }
@@ -114,6 +117,9 @@ export class Permission extends BaseEntity {
   @Column()
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
+
+  @OneToMany(() => PermissionMapping, (permission_mapping) => permission_mapping.permission)
+  permission_mapping: PermissionMapping[];
 }
 
 @Entity(config.DB.MAIN_SCHEMA + '.' + 'permission_mapping')
@@ -134,6 +140,14 @@ export class PermissionMapping extends BaseEntity {
   @Column()
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
+
+  @ManyToOne(() => Role, (role) => role.permission_mapping)
+  @JoinColumn({ name: 'role_id' })
+  role: Role;
+
+  @ManyToOne(() => Permission, (permission) => permission.permission_mapping)
+  @JoinColumn({ name: 'permission_id' })
+  permission: Permission;
 }
 
 @Entity(config.DB.MAIN_SCHEMA + '.' + 'materials')

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend TypeScript",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "NODE_ENV=local nodemon",
     "lint": "eslint . --ext .ts",
     "start": "NODE_ENV=production node -r tsconfig-paths/register -r ts-node/register src/index.ts",
     "typeorm": "ts-node -r tsconfig-paths/register -O '{\"module\": \"commonjs\"}' ./node_modules/typeorm/cli.js -d src/ormconfig.ts",

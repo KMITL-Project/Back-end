@@ -87,3 +87,37 @@ export const deleteOrder = async (req: Request, res: Response, _: NextFunction):
     });
   }
 };
+
+export const changeStatusInprogress = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const rsp = await orderService.updateStatusInProgress(Number(req.params.id));
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: 'Update status orders success',
+      data: rsp,
+    });
+  } catch (error) {
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
+  }
+};
+
+export const changeStatusSuccess = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const rsp = await orderService.updateStatusSuccess(Number(req.params.id));
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: 'Update status orders success',
+      data: rsp,
+    });
+  } catch (error) {
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
+  }
+};

@@ -81,7 +81,7 @@ class RoleService {
       where: {
         user_id: userId,
       },
-      relations: ['role'],
+      relations: ['role', 'role.permission_mapping', 'role.permission_mapping.permission'],
     });
 
     const role = roleMapping.map((roleMap) => roleMap.role);

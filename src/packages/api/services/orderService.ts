@@ -1,5 +1,6 @@
 import { datasource } from '~/ormconfig';
 import { Order, OrderType } from '~/packages/database/models/models';
+import { CustomError } from '../errors/customerError';
 
 class OrderService {
   private orderRepository = datasource.getRepository(Order);
@@ -34,6 +35,26 @@ class OrderService {
 
   async deleteOrder(id: number): Promise<void> {
     await this.orderRepository.delete(id);
+  }
+
+  async updateStatusInProgress(id: number): Promise<Order | null> {
+    const updateResult = await this.orderRepository.createQueryBuilder().update(Order).set({ status: OrderType.InProgress }).where('id = :id', { id }).execute();
+
+    if (updateResult.affected === 0) {
+      throw new CustomError(`Not found order id ${id}`, 400);
+    }
+
+    return this.orderRepository.findOne({ where: { id } });
+  }
+
+  async updateStatusSuccess(id: number): Promise<Order | null> {
+    const updateResult = await this.orderRepository.createQueryBuilder().update(Order).set({ status: OrderType.Success }).where('id = :id', { id }).execute();
+
+    if (updateResult.affected === 0) {
+      throw new CustomError(`Not found order id ${id}`, 400);
+    }
+
+    return this.orderRepository.findOne({ where: { id } });
   }
 }
 

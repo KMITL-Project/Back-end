@@ -58,7 +58,7 @@ class OrdersGroupService {
       .returning(['id'])
       .execute();
 
-    if (orderGroup) {
+    if (orderGroup.affected === 0) {
       throw new CustomError(`Not found order id ${id}`, 400);
     }
 
@@ -78,7 +78,7 @@ class OrdersGroupService {
       .returning(['id'])
       .execute();
 
-    if (orderGroup) {
+    if (orderGroup.affected === 0) {
       throw new CustomError(`Not found order id ${id}`, 400);
     }
 
