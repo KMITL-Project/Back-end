@@ -19,6 +19,15 @@ class FloorService {
     return await this.floorRepository.findOneBy({ id });
   }
 
+  async getFloorsByShelfId(shelfId: number): Promise<Floor[] | []> {
+    const floors = await this.floorRepository.find({
+      where: {
+        shelve_id: shelfId,
+      },
+    });
+    return floors;
+  }
+
   async getFloorAll(): Promise<Floor[] | null> {
     return await this.floorRepository.find();
   }

@@ -68,6 +68,7 @@ export class CreateInitialTables1694622892647 implements MigrationInterface {
         CREATE TABLE ${config.DB.MAIN_SCHEMA}."units" (
             "id" SERIAL PRIMARY KEY,
             "name" VARCHAR NOT NULL,
+            "detail" VARCHAR,
             "update_at" TIMESTAMP NOT NULL DEFAULT now(),
             "created_at" TIMESTAMP NOT NULL DEFAULT now()
         );

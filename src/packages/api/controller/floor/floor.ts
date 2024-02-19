@@ -38,6 +38,23 @@ export const getFloor = async (req: Request, res: Response, _: NextFunction): Pr
   }
 };
 
+export const getFloorsByShelfId = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const rsp = await floorService.getFloorsByShelfId(Number(req.params.id));
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: 'get floors success',
+      data: rsp,
+    });
+  } catch (error) {
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
+  }
+};
+
 export const createFloor = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   let fileName = '';
   if (!Array.isArray(req.files.image_url)) {

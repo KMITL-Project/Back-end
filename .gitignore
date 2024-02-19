@@ -129,7 +129,7 @@ pg_data
 
 .vscode
 
-.DS_Store
+*.DS_Store
 
 src/upload/*
 

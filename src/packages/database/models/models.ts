@@ -201,6 +201,9 @@ export class Unit extends BaseEntity {
   name: string;
 
   @Column()
+  detail: string;
+
+  @Column()
   @UpdateDateColumn({ type: 'timestamp' })
   update_at: Date;
 
