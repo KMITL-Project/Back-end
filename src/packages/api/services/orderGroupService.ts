@@ -7,11 +7,11 @@ class OrdersGroupService {
   private ordersGroupRepository = datasource.getRepository(OrdersGroup);
 
   // eslint-disable-next-line @typescript-eslint/member-delimiter-style
-  async createOrdersGroup(orderIds: number[]): Promise<{ orderGroup: OrdersGroup; orders: Order[] }> {
+  async createOrdersGroup(orderIds: number[], node: string): Promise<{ orderGroup: OrdersGroup; orders: Order[] }> {
     return await datasource.transaction(async (transactionalEntityManager) => {
       const orderGroupRepository = transactionalEntityManager.getRepository(OrdersGroup);
       const orderGroup = orderGroupRepository.create({
-        node: '{}',
+        node: node,
         status: LogisticType.Pending,
       });
 
@@ -89,7 +89,8 @@ class OrdersGroupService {
       .getOne();
   }
 
-  async updateOrdersGroup(id: number, orderIds: number[]): Promise<Order[]> {
+  // eslint-disable-next-line @typescript-eslint/member-delimiter-style
+  async updateOrdersGroup(id: number, orderIds: number[], node: string): Promise<{ orderGroup: OrdersGroup; orders: Order[] }> {
     return await datasource.transaction(async (transactionalEntityManager) => {
       const orderRepository = transactionalEntityManager.getRepository(Order);
       const orderGroupRepository = transactionalEntityManager.getRepository(OrdersGroup);
@@ -98,6 +99,8 @@ class OrdersGroupService {
       if (!orderGroup) {
         throw new CustomError(`Order group not found with id: ${id}`, 400);
       }
+      orderGroup.node = node;
+      orderGroup.save();
 
       const existingOrders = await orderRepository.findBy({ id: In(orderIds) });
       const invalidOrder = existingOrders.find((order) => order.orders_group_id != null && order.orders_group_id !== id);
@@ -115,7 +118,10 @@ class OrdersGroupService {
         .execute();
 
       const updatedOrders = await orderRepository.findBy({ id: In(orderIds) });
-      return updatedOrders;
+      return {
+        orderGroup,
+        orders: updatedOrders,
+      };
     });
   }
 

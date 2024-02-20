@@ -37,7 +37,7 @@ export const getOrderGroup = async (req: Request, res: Response, _: NextFunction
 export const createOrderGroup = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const ids = req.body.orders_ids.split(',').map(Number);
-    const rsp = await ordersGroupService.createOrdersGroup(ids);
+    const rsp = await ordersGroupService.createOrdersGroup(ids, req.body.node);
     return res.status(httpStatus.OK).json({
       code: 200,
       message: 'Create orders success',
@@ -55,7 +55,7 @@ export const createOrderGroup = async (req: Request, res: Response, _: NextFunct
 export const updateOrderGroup = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const ids = req.body.orders_ids.split(',').map(Number);
-    const rsp = await ordersGroupService.updateOrdersGroup(Number(req.params.id), ids);
+    const rsp = await ordersGroupService.updateOrdersGroup(Number(req.params.id), ids, req.body.node);
     return res.status(httpStatus.OK).json({
       code: 200,
       message: 'Update orders success',
