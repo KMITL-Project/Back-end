@@ -46,33 +46,85 @@ class RoleService {
     await this.roleRepository.delete(id);
   }
 
-  async addRoleToUser(userId: number, roleId: number): Promise<RoleMapping> {
+  async addRoleToUser(userId: number, roleIds: number[]): Promise<RoleMapping[]> {
     return await datasource.transaction(async (transactionalEntityManager: EntityManager) => {
-      try {
-        const roleMappingRepository = transactionalEntityManager.getRepository(RoleMapping);
+      const roleMappingRepository = transactionalEntityManager.getRepository(RoleMapping);
+      const rolesAdded: RoleMapping[] = [];
 
-        const existingMapping = await roleMappingRepository.findOne({
-          where: {
-            user_id: userId,
-            role_id: roleId,
-          },
-        });
+      await Promise.all(
+        roleIds.map(async (roleId) => {
+          const existingMapping = await roleMappingRepository.findOne({
+            where: {
+              user_id: userId,
+              role_id: roleId,
+            },
+          });
 
-        if (existingMapping) {
-          console.error('User already has this role.');
-          throw new CustomError('User already has this role.', 400);
-        }
+          if (!existingMapping) {
+            const role = roleMappingRepository.create({
+              user_id: userId,
+              role_id: roleId,
+            });
+            const savedRole = await roleMappingRepository.save(role);
+            rolesAdded.push(savedRole);
+          } else {
+            console.error('User already has role:', roleId);
+            throw new CustomError(`User already has role: ${roleId}`, 400);
+          }
+        }),
+      );
 
-        const role = roleMappingRepository.create({
+      const updatedRoles = await roleMappingRepository.find({
+        where: {
           user_id: userId,
-          role_id: roleId,
-        });
+        },
+        relations: ['role', 'role.permission_mapping', 'role.permission_mapping.permission'],
+      });
 
-        return await roleMappingRepository.save(role);
-      } catch (error) {
-        console.error('An error occurred: ', error);
-        throw error;
-      }
+      return updatedRoles;
+    });
+  }
+
+  async updateRoleToUser(userId: number, roleIds: number[]): Promise<RoleMapping[]> {
+    return await datasource.transaction(async (transactionalEntityManager: EntityManager) => {
+      const roleMappingRepository = transactionalEntityManager.getRepository(RoleMapping);
+      const rolesAdded: RoleMapping[] = [];
+
+      await roleMappingRepository.delete({
+        user_id: userId,
+      });
+
+      await Promise.all(
+        roleIds.map(async (roleId) => {
+          const existingMapping = await roleMappingRepository.findOne({
+            where: {
+              user_id: userId,
+              role_id: roleId,
+            },
+          });
+
+          if (!existingMapping) {
+            const role = roleMappingRepository.create({
+              user_id: userId,
+              role_id: roleId,
+            });
+            const savedRole = await roleMappingRepository.save(role);
+            rolesAdded.push(savedRole);
+          } else {
+            console.error('User already has role:', roleId);
+            throw new CustomError(`User already has role: ${roleId}`, 400);
+          }
+        }),
+      );
+
+      const updatedRoles = await roleMappingRepository.find({
+        where: {
+          user_id: userId,
+        },
+        relations: ['role', 'role.permission_mapping', 'role.permission_mapping.permission'],
+      });
+
+      return updatedRoles;
     });
   }
 

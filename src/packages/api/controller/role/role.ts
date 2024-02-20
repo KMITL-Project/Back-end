@@ -90,10 +90,29 @@ export const deleteRole = async (req: Request, res: Response, _: NextFunction): 
 
 export const addRoleToUser = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
-    const rsp = await roleService.addRoleToUser(Number(req.body.user_id), Number(req.body.role_id));
+    const role_ids = req.body.role_ids.split(',').map(Number);
+    const rsp = await roleService.addRoleToUser(Number(req.body.user_id), role_ids);
     return res.status(httpStatus.OK).json({
       code: 200,
       message: `add role to user ID:${req.body.user_id} success`,
+      data: rsp,
+    });
+  } catch (error) {
+    const { code, message } = validateError(error);
+    return res.status(code).json({
+      code,
+      message,
+    });
+  }
+};
+
+export const updateRoleToUser = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const role_ids = req.body.role_ids.split(',').map(Number);
+    const rsp = await roleService.updateRoleToUser(Number(req.body.user_id), role_ids);
+    return res.status(httpStatus.OK).json({
+      code: 200,
+      message: `update role to user ID:${req.body.user_id} success`,
       data: rsp,
     });
   } catch (error) {
