@@ -65,6 +65,15 @@ export const createShelf = async (req: Request, res: Response, _: NextFunction):
 };
 
 export const updateShelf = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+  let fileName = '';
+  if (!Array.isArray(req.files.image_url)) {
+    fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
+    req.files.image_url.mv('src/upload/' + fileName, (err) => {
+      if (err) console.error('error:', err);
+    });
+    req.body.image_url = fileName;
+  }
+
   try {
     const rsp = await shelfService.updateShelf(Number(req.params.id), { ...req.body });
     return res.status(httpStatus.OK).json({
