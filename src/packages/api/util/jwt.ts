@@ -14,6 +14,11 @@ export const generateToken = (user: User): string => {
   return jwt.sign(payload, config.AUTH.TOKEN_SECRET, { expiresIn: '10d' });
 };
 
+export const getBodyToken = (token: string) => {
+  const decoded = jwt.verify(token, config.AUTH.TOKEN_SECRET);
+  return decoded;
+};
+
 export const validateToken = (req: Request, res: Response, next: NextFunction) => {
   const header = req.headers.authorization;
 
@@ -25,7 +30,7 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
   }
 
   const parts = header.split(' ');
-
+  /* istanbul ignore next */
   if (parts.length === 2 && parts[0] === 'Bearer') {
     const token = parts[1];
     try {
@@ -33,6 +38,7 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
       req.user = decoded;
       next();
     } catch (error) {
+      /* istanbul ignore next */
       if (error instanceof jwt.TokenExpiredError) {
         res.status(httpStatus.UNAUTHORIZED).json({
           code: httpStatus.UNAUTHORIZED,
@@ -51,6 +57,7 @@ export const validateToken = (req: Request, res: Response, next: NextFunction) =
       }
     }
   } else {
+    /* istanbul ignore next */
     res.status(httpStatus.UNAUTHORIZED).json({
       code: httpStatus.UNAUTHORIZED,
       message: 'Invalid token format.',

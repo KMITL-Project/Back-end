@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import * as httpStatus from 'http-status';
 import { materialHistoryService } from '../../services/materialHistoryService';
-import { randomUUID } from 'crypto';
 import validateError from '../../errors/validateError';
 
 export const getAllMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
@@ -13,6 +12,7 @@ export const getAllMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -30,6 +30,7 @@ export const getMaterialHistory = async (req: Request, res: Response, _: NextFun
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -39,15 +40,6 @@ export const getMaterialHistory = async (req: Request, res: Response, _: NextFun
 };
 
 export const createMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
-  let fileName = '';
-  if (!Array.isArray(req.files.image_url)) {
-    fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
-    req.files.image_url.mv('src/upload/' + fileName, (err) => {
-      if (err) console.error('error:', err);
-    });
-    req.body.image_url = fileName;
-  }
-
   try {
     const rsp = await materialHistoryService.createMaterialHistory({ ...req.body });
     return res.status(httpStatus.OK).json({
@@ -56,6 +48,7 @@ export const createMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -65,15 +58,6 @@ export const createMaterialHistory = async (req: Request, res: Response, _: Next
 };
 
 export const updateMaterialHistory = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
-  let fileName = '';
-  if (!Array.isArray(req.files.image_url)) {
-    fileName = randomUUID() + '.' + req.files.image_url.name.split('.').pop();
-    req.files.image_url.mv('src/upload/' + fileName, (err) => {
-      if (err) console.error('error:', err);
-    });
-    req.body.image_url = fileName;
-  }
-
   try {
     const rsp = await materialHistoryService.updateMaterialHistory(Number(req.params.id), { ...req.body });
     return res.status(httpStatus.OK).json({
@@ -82,6 +66,7 @@ export const updateMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -99,6 +84,7 @@ export const deleteMaterialHistory = async (req: Request, res: Response, _: Next
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

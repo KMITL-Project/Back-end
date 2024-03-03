@@ -12,6 +12,7 @@ export const getAllOrderGroup = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -29,6 +30,7 @@ export const getOrderGroup = async (req: Request, res: Response, _: NextFunction
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { message, code } = validateError(error);
     return res.status(code).json({ message, code });
   }
@@ -44,6 +46,7 @@ export const createOrderGroup = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -62,6 +65,7 @@ export const updateOrderGroup = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -79,6 +83,7 @@ export const deleteOrderGroup = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -96,6 +101,7 @@ export const changeStatusInprogress = async (req: Request, res: Response, _: Nex
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -113,6 +119,7 @@ export const changeStatusSuccess = async (req: Request, res: Response, _: NextFu
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

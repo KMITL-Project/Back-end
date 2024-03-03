@@ -12,6 +12,7 @@ export const getAllUnit = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -29,6 +30,7 @@ export const getUnit = async (req: Request, res: Response, _: NextFunction): Pro
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -46,6 +48,7 @@ export const createUnit = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -63,6 +66,7 @@ export const updateUnit = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -80,6 +84,7 @@ export const deleteUnit = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

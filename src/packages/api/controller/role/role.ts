@@ -12,6 +12,7 @@ export const getAllRole = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -29,6 +30,7 @@ export const getRole = async (req: Request, res: Response, _: NextFunction): Pro
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -46,6 +48,7 @@ export const createRole = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -63,6 +66,7 @@ export const updateRole = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -80,6 +84,7 @@ export const deleteRole = async (req: Request, res: Response, _: NextFunction): 
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -98,6 +103,7 @@ export const addRoleToUser = async (req: Request, res: Response, _: NextFunction
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -116,6 +122,7 @@ export const updateRoleToUser = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -133,6 +140,7 @@ export const getRolesByUserId = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

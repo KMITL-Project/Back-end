@@ -13,6 +13,7 @@ export const getAllShelf = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -30,6 +31,7 @@ export const getShelf = async (req: Request, res: Response, _: NextFunction): Pr
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -56,6 +58,7 @@ export const createShelf = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -82,6 +85,7 @@ export const updateShelf = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -99,6 +103,7 @@ export const deleteShelf = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

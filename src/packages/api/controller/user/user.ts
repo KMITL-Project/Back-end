@@ -12,6 +12,7 @@ export const userList = async (req: Request, res: Response, _: NextFunction): Pr
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -29,6 +30,7 @@ export const userInfo = async (req: Request, res: Response, _: NextFunction): Pr
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

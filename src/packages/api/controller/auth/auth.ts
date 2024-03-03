@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response, _: NextFunction) => {
         data: { token: token },
       });
     }
-    return res.status(httpStatus.OK).json({
+    return res.status(httpStatus.UNAUTHORIZED).json({
       code: httpStatus.UNAUTHORIZED,
       message: 'Login fail',
       data: {},
@@ -37,7 +37,7 @@ export const login = async (req: Request, res: Response, _: NextFunction) => {
 export const register = async (req: Request, res: Response, _: NextFunction) => {
   const validation = validationResult(req);
   if (!validation.isEmpty()) {
-    return res.status(httpStatus.OK).json(validation);
+    return res.status(httpStatus.BAD_REQUEST).json(validation);
   }
 
   let fileName = '';
@@ -66,3 +66,5 @@ export const register = async (req: Request, res: Response, _: NextFunction) => 
     });
   }
 };
+
+export default { login, register };

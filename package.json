@@ -16,7 +16,7 @@
     "test:coverage": "NODE_ENV=test jest --coverage"
   },
   "dependencies": {
-    "@faker-js/faker": "^8.0.2",
+    "@faker-js/faker": "^8.4.1",
     "@hapi/joi": "17.1.1",
     "@types/express-fileupload": "^1.4.1",
     "@types/jsonwebtoken": "^9.0.5",

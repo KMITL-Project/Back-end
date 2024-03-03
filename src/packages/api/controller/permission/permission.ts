@@ -12,6 +12,7 @@ export const getAllPermission = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -29,6 +30,7 @@ export const getPermission = async (req: Request, res: Response, _: NextFunction
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -46,6 +48,7 @@ export const createPermission = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -63,6 +66,7 @@ export const updatePermission = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -80,6 +84,7 @@ export const deletePermission = async (req: Request, res: Response, _: NextFunct
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,

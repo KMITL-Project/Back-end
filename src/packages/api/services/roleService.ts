@@ -43,7 +43,11 @@ class RoleService {
   }
 
   async deleteRole(id: number): Promise<void> {
-    await this.roleRepository.delete(id);
+    await datasource.transaction(async (transactionalEntityManager) => {
+      const roleMappingRepository = transactionalEntityManager.getRepository(RoleMapping);
+      await roleMappingRepository.delete({ role_id: id });
+      await transactionalEntityManager.getRepository(Role).delete(id);
+    });
   }
 
   async addRoleToUser(userId: number, roleIds: number[]): Promise<RoleMapping[]> {

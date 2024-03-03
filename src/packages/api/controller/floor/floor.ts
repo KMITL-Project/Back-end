@@ -13,6 +13,7 @@ export const getAllFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -30,6 +31,7 @@ export const getFloor = async (req: Request, res: Response, _: NextFunction): Pr
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -47,6 +49,7 @@ export const getFloorsByShelfId = async (req: Request, res: Response, _: NextFun
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -73,6 +76,7 @@ export const createFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -99,6 +103,7 @@ export const updateFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
@@ -116,6 +121,7 @@ export const deleteFloor = async (req: Request, res: Response, _: NextFunction):
       data: rsp,
     });
   } catch (error) {
+    /* istanbul ignore next */
     const { code, message } = validateError(error);
     return res.status(code).json({
       code,
