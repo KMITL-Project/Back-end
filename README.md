@@ -54,11 +54,11 @@ SERVER_PORT=""
 #### build image
 
 ```bash
-docker build -t kmitl-back-end .
+docker build --progress=plain -t management-back-end .
 ```
 
 #### run image
 
 ```bash
-docker run -p 3000:3000 kmitl-back-end
+docker run -d -p 3000:3000 management-back-end
 ```
