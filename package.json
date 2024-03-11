@@ -10,6 +10,8 @@
     "migration:create": "NODE_ENV=local npm run typeorm -- migration:create -n",
     "setup:local": "NODE_ENV=local npm run typeorm -- migration:run",
     "setup:local_revert": "NODE_ENV=local npm run typeorm -- migration:revert",
+    "setup:prod": "NODE_ENV=production npm run typeorm -- migration:run",
+    "setup:prod_revert": "NODE_ENV=production npm run typeorm -- migration:revert",
     "setup:test": "NODE_ENV=test npm run typeorm -- migration:run",
     "setup:test_revert": "NODE_ENV=test npm run typeorm -- migration:revert",
     "test": "NODE_ENV=test jest -i",
